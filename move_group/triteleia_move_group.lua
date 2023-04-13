@@ -6,30 +6,30 @@ function move_group(timing, end_timing, tg, x, y, z, easing)
 	local movable_tg = Scene.getNoteGroup(tg)
 	
 	if x_channels[tg] == nil then
-			x_channels[tg] = Channel.keyframe()
-			.addKey(0,0)
-			.addKey(timing, movable_tg.translationX.valueAt(timing), easing)
-			.addKey(end_timing, x)
+		x_channels[tg] = Channel.keyframe()
+		.addKey(0,0)
+		.addKey(timing, movable_tg.translationX.valueAt(timing), easing)
+		.addKey(end_timing, x)
 			
-			movable_tg.translationX = x_channels[tg]
+		movable_tg.translationX = x_channels[tg]
 	end
 	
 	if y_channels[tg] == nil then
-			y_channels[tg] = Channel.keyframe()
-			.addKey(0,0)
-			.addKey(timing, movable_tg.translationY.valueAt(timing), easing)
-			.addKey(end_timing, y)
-			
-			movable_tg.translationY = y_channels[tg]
+		y_channels[tg] = Channel.keyframe()
+		.addKey(0,0)
+		.addKey(timing, movable_tg.translationY.valueAt(timing), easing)
+		.addKey(end_timing, y)
+		
+		movable_tg.translationY = y_channels[tg]
 	end
 	
 	if z_channels[tg] == nil then
-			z_channels[tg] = Channel.keyframe()
-			.addKey(0,0)
-			.addKey(timing, movable_tg.translationZ.valueAt(timing), easing)
-			.addKey(end_timing, z)
-			
-			movable_tg.translationZ = z_channels[tg]
+		z_channels[tg] = Channel.keyframe()
+		.addKey(0,0)
+		.addKey(timing, movable_tg.translationZ.valueAt(timing), easing)
+		.addKey(end_timing, z)
+		
+		movable_tg.translationZ = z_channels[tg]
 	end
 	
 	if x_channels[tg].valueAt(timing) ~= x then
