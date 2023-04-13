@@ -7,6 +7,7 @@
 4. _easing (optional)_ - easing to use when moving the note group, applies to all axes in the command
 
 The movement applies to the timinggroup the command is in, like hidegroup.
+
 x = left and right, y = up and down, z = forwards and backwards (relative to the default camera)
 ## scenecontrol(_timing_, movenotegroupdelta, _end_timing_, _dx_, _dy_, _dz_, _easing_)
 1. _timing_ - when the notes should start moving
