@@ -1,3 +1,4 @@
+## Documentation for each SC is available in every SC folder, please read it!
 # arccreate-scenecontrol-collection
 Public collection of Arccreate compatible scenecontrol that I've written
 ## How to use
