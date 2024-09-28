@@ -27,8 +27,12 @@ videobg.layer = bg_layer_group_channels["video"]
 
 function create_bg(filename, width, height)
 	-- Using default values if necessary
-	width = width or DEFAULT_WIDTH
-	height = height or DEFAULT_HEIGHT 
+	if width == nil or width == 0 then
+		width = DEFAULT_WIDTH
+	end
+	if height == nil or height == 0 then
+		height = DEFAULT_HEIGHT
+	end
 
 	-- Ignoring attempts to make the same BG instance
 	if bg_sprites[filename] then return end
