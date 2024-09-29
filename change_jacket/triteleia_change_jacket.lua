@@ -59,6 +59,13 @@ function change_jacket(timing, end_timing, filename, easing)
     end
 end
 
+addScenecontrol("createjacket", {"filename","size_px"}, function(cmd)
+	local filename = cmd.args[1]
+	local size = cmd.args[2]
+	
+	create_jacket(filename, size)
+end)
+
 addScenecontrol("changetojacket", {"end_timing","filename","easing"}, function(cmd)
 	local timing = cmd.timing
 	local end_timing = cmd.args[1]
