@@ -5,7 +5,7 @@
 3. _width\_px (optional)_ - width of the source image, defaults to 1280
 4. _height\_px (optional)_ - height of the source image, defaults to 960
 
-**You do not have to use this to use any of the other events if your image is the usual 1280x960 resolution, using any other command automatically creates the BG with the default sizing. These commands use the filename used in the bgcreate command as an identifier of which background image should be modified.**
+**You do not have to use bgcreate to use any of the other events if your image is the usual 1280x960 resolution, using any other command automatically creates the BG with the default sizing. These commands use the filename used in the bgcreate command as an identifier of which background image should be modified.**
 
 Newly bgcreated BGs have an alpha value of 0.
 
