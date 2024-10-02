@@ -35,7 +35,7 @@ function create_bg(filename, width, height)
 	end
 
 	-- Ignoring attempts to make the same BG instance
-	if bg_sprites[filename] then return end
+	if bg_sprites[filename] or bg_alpha_channels[filename] then return end
 
 	if filename ~= nil and filename ~= '' and type(filename) == "string" then
 		-- Initializes a new channel for the new BG's alpha values and defaults it to 0
