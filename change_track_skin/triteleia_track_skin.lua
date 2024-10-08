@@ -17,19 +17,22 @@ function change_track_skin(timing, end_timing, skin, easing)
 		if skin == current_skin.valueAt(timing) then return end -- Ignore attempts to use the same skin multiple times in a row
 		
 		if skin == "base" then -- If returning to the base skin of the track, hide the current custom skinned track
-			track_alpha_channels[current_skin.valueAt(timing)].addKey(timing,255).addKey(end_timing,0)
+			track_alpha_channels[current_skin.valueAt(timing)].addKey(timing,255,easing).addKey(end_timing,0)
 			track_layer_channels[current_skin.valueAt(timing)].addKey(end_timing,top_layer-2)
 		
 		elseif tracks[skin] ~= nil then -- If track with desired skin already exists,
-			local start_alpha = track_alpha_channels[skin].valueAt(timing)
 
 			track_alpha_channels[skin]
-			.addKey(timing,start_alpha,easing)
+			.addKey(timing,0,easing)
 			.addKey(end_timing,255)
 			
 			if current_skin.valueAt(timing) ~= "base" then
-				track_alpha_channels[current_skin.valueAt(timing)].addKey(end_timing,0,"inconst")
-				track_layer_channels[current_skin.valueAt(timing)].addKey(end_timing,top_layer-2) -- Put last used skin track below the new track when the new track is FINISHED fading in
+				track_alpha_channels[current_skin.valueAt(timing)]
+				.addKey(timing,255,"inconst")
+				.addKey(end_timing,0)
+				
+				track_layer_channels[current_skin.valueAt(timing)]
+				.addKey(end_timing,top_layer-2) -- Put last used skin track below the new track when the new track is FINISHED fading in
 			end
 			
 			track_layer_channels[skin]
@@ -44,7 +47,7 @@ function change_track_skin(timing, end_timing, skin, easing)
 			Channel.keyframe()				-- Create an exclusive alpha channel for the new track
 			.addKey(-10000,0)				-- Make track start fully transparent
 			.addKey(timing,0,easing)		-- Ensure track stays transparent until it's go time
-			.addKey(end_timing,255,easing)  -- Fade new track into existence			
+			.addKey(end_timing,255)  -- Fade new track into existence			
 			
 			-- Make the new track use the above channel for its alpha values
 			tracks[skin].colorA = track_alpha_channels[skin]
@@ -77,7 +80,7 @@ function change_track_skin(timing, end_timing, skin, easing)
 			tracks[skin].textureOffsetY = track_texture_channels[skin] -- ensure the track still looks like it's scrolling
 		end
 		
-		current_skin.addKey(end_timing,skin) -- Save the fact that this was the newest used track in the skin timeline
+		current_skin.addKey(timing,skin) -- Save the fact that this was the newest used track in the skin timeline
 	end
 end
 
