@@ -95,6 +95,8 @@ end)
 
 -- trackdisplay but it affects the current custom track
 function track_skin_display(timing, end_timing, alpha, easing)
+    if current_skin.valueAt(timing) == "base" then return end
+
     local track_alpha = track_alpha_channels[current_skin.valueAt(timing)]
 
     track_alpha
