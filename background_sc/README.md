@@ -5,7 +5,7 @@
 3. _width\_px (optional)_ - width of the source image, defaults to 1280
 4. _height\_px (optional)_ - height of the source image, defaults to 960
 
-**You do not have to use bgcreate to use any of the other events if your image is the usual 1280x960 resolution, using any other command automatically creates the BG with the default sizing. These commands use the filename used in the bgcreate command as an identifier of which background image should be modified.**
+**You do not have to use bgcreate to use any of the other events if your image is the usual 1280x960 resolution, using any other command automatically creates the BG with the default sizing. These commands use the _filename_ used in the bgcreate command as an identifier of which background image should be modified.**
 
 Newly bgcreated BGs have an alpha value of 0.
 
@@ -17,7 +17,7 @@ Works both with .jpg and .png files. **The files have to be within the Scenecont
 4. _alpha_ - end alpha value of the background
 5. _easing (optional)_ - linear by default
 
-Use "video" to change the video background's alpha value.
+Use "video" as the _filename_ to change the video background's alpha value.
 ## scenecontrol(_timing_, bgsetlayer, _filename_, _layer_, _layer_group_)
 1. _timing_ - when the layer of the background should be changed
 2. _filename_ - identifying filename of an already existing background
@@ -26,4 +26,4 @@ Use "video" to change the video background's alpha value.
 
 In "Foreground" layers will be placed and be visible 'above' the track, **.png images with transparent areas that are moved to this group should also work properly and show what is "behind" those areas**. In "Background" layers will be placed 'below' the track. Every background is in "Background" by default. "UI" is a little weird but should be above "Foreground".
 
-You cannot change the base background's layering, but you can change the layering of the video background by using "video" as the filename.
+You cannot change the base background's layering, but you can change the layering of the video background by using "video" as the _filename_.
