@@ -26,4 +26,4 @@ Use "video" to change the video background's alpha value.
 
 In "Foreground" layers will be placed and be visible 'above' the track, **.png images with transparent areas that are moved to this group should also work properly and show what is "behind" those areas**. In "Background" layers will be placed 'below' the track. Every background is in "Background" by default. "UI" is a little weird but should be above "Foreground".
 
-You cannot change the base background's layering, but you can change the layering of the video background by using "video" as the filename, for example, in bgshow
+You cannot change the base background's layering, but you can change the layering of the video background by using "video" as the filename.
