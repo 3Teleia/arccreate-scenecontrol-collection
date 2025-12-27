@@ -2,8 +2,8 @@ local tracks = {}
 local track_alpha_channels = {}
 local track_layer_channels = {}
 local track_texture_channels = {}
-local top_layer = Scene.track.sort.valueAt(0) + 1 -- Allow placement of newly skinned tracks above the default one
-local current_skin = StringChannel.create().addKey(0,"base") -- Saves names of when which track skins were used
+local top_layer = Scene.track.sort.valueAt(-1000000) + 1 -- Allow placement of newly skinned tracks above the default one
+local current_skin = StringChannel.create().addKey(-1000000,"base") -- Saves names of when which track skins were used
 
 -- Assuming the 0ms timing in the base group is the base BPM
 -- Used for the track scrolling texture offset
@@ -45,7 +45,7 @@ function change_track_skin(timing, end_timing, skin, easing)
 			
 			track_alpha_channels[skin] = 
 			Channel.keyframe()				-- Create an exclusive alpha channel for the new track
-			.addKey(-10000,0)				-- Make track start fully transparent
+			.addKey(-1000000,0)				-- Make track start fully transparent
 			.addKey(timing,0,easing)		-- Ensure track stays transparent until it's go time
 			.addKey(end_timing,255)  -- Fade new track into existence			
 			
@@ -69,7 +69,7 @@ function change_track_skin(timing, end_timing, skin, easing)
 			
 			track_layer_channels[skin] = 
 			Channel.keyframe().setDefaultEasing('inconst')  -- Create a channel that determines the layer of the new track
-			.addKey(-10000,top_layer-2)    					-- Place it below the main track
+			.addKey(-1000000,top_layer-2)    					-- Place it below the main track
 			.addKey(timing, top_layer+1)   					-- Put new track on the top when it starts fading in
 			.addKey(end_timing, top_layer) 					-- Put new track 1 layer below the topmost layer
 			tracks[skin].sort = track_layer_channels[skin]  -- Make the new track use the above channel for its layering
@@ -112,3 +112,4 @@ addScenecontrol("trackskindisplay", {"end_timing","alpha","easing"}, function(cm
 	
 	track_skin_display(timing, end_timing, alpha, easing)
 end)
+
