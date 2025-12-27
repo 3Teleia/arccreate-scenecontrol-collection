@@ -14,13 +14,13 @@ bg_alpha_channels = {}
 bg_layer_channels = {}
 bg_layer_group_channels = {}
 bg_sprites = {}
-bg_top_layer = videobg.sort.valueAt(0) + 1
+bg_top_layer = videobg.sort.valueAt(-1000000) + 1
 
 -- Replace alpha, layer and sort channels of the video BG (unlike the base BG it's technically a sprite
 -- so it has its own layer and sort values that can be controlled easily
-bg_alpha_channels["video"] = Channel.keyframe().addKey(-10000,255)
-bg_layer_channels["video"] = Channel.keyframe().setDefaultEasing('inconst').addKey(-10000,videobg.sort.valueAt(0))
-bg_layer_group_channels["video"] = StringChannel.create().addKey(-10000,videobg.layer.valueAt(0))
+bg_alpha_channels["video"] = Channel.keyframe().addKey(-1000000,255)
+bg_layer_channels["video"] = Channel.keyframe().setDefaultEasing('inconst').addKey(-1000000,videobg.sort.valueAt(0))
+bg_layer_group_channels["video"] = StringChannel.create().addKey(-1000000,videobg.layer.valueAt(0))
 videobg.colorA = bg_alpha_channels["video"]
 videobg.sort = bg_layer_channels["video"]
 videobg.layer = bg_layer_group_channels["video"]
@@ -39,7 +39,7 @@ function create_bg(filename, width, height)
 
 	if filename ~= nil and filename ~= '' and type(filename) == "string" then
 		-- Initializes a new channel for the new BG's alpha values and defaults it to 0
-		bg_alpha_channels[filename] = Channel.keyframe().addKey(-10000,0)
+		bg_alpha_channels[filename] = Channel.keyframe().addKey(-1000000,0)
 		
 		-- Increments the value used to keep track of the topmost BG layer
 		bg_top_layer = bg_top_layer + 1
@@ -52,8 +52,8 @@ function create_bg(filename, width, height)
 		new_bg.scaleY = 160 * DEFAULT_HEIGHT/height
 		
 		-- Places the new BG on the top of the BG "stack", uses a channel so that the layer and layer group can be easily changed later on
-		bg_layer_channels[filename] = Channel.keyframe().setDefaultEasing('inconst').addKey(-10000,bg_top_layer)
-		bg_layer_group_channels[filename] = StringChannel.create().addKey(-10000,"Background")
+		bg_layer_channels[filename] = Channel.keyframe().setDefaultEasing('inconst').addKey(-1000000,bg_top_layer)
+		bg_layer_group_channels[filename] = StringChannel.create().addKey(-1000000,"Background")
 		
 		new_bg.layer = bg_layer_group_channels[filename]
 		new_bg.sort = bg_layer_channels[filename]
@@ -142,3 +142,4 @@ addScenecontrol("bgsetlayer", {"filename","layer","layer_group"}, function(cmd)
 	-- Won't work with the base BG
 	bg_set_layer(timing, filename, layer, layer_group)
 end)
+
